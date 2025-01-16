@@ -40,7 +40,7 @@
         transition: opacity 0.4s ease-in;
         opacity: 0;
         flex-shrink: 0;
-        background-size:contain;
+        background-size: contain;
         display: none;
         /* transform: translateX(-100%); */
       }
@@ -143,10 +143,8 @@
     imgs.forEach((ele) => {
       if (ele.classList.contains("current-img")) {
         current_img = ele;
-        allImgsClass.push(ele);
-      } else {
-        allImgsClass.push(ele);
       }
+      allImgsClass.push(ele);
     });
     const size = allImgsClass.length;
     currentImgIndex = allImgsClass.indexOf(current_img);
