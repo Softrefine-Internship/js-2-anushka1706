@@ -53,6 +53,7 @@
         transition: opacity 0.3s ease-in-out;
         opacity: 0;
         visibility: hidden;
+        row-gap: 1.5rem;
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: 1fr;
@@ -81,10 +82,10 @@
       .deactivate-heading {
         font-size: 1.3rem;
         font-weight: 600;
-        text-transform: capitalize;
+        /* text-transform: capitalize; */
       }
       .deactivate-message {
-        color: grey;
+        color: #b2b9c0;
         font-weight: 500;
         font-size: 1.3rem;
       }
@@ -142,6 +143,9 @@
         opacity: 1;
         visibility: visible;
       }
+      .close-icon{
+        color:#b2b9c0;
+      }
       /* .deactive.success{
 
             } */
@@ -159,7 +163,7 @@
         <button class="close-btn all-close">
           <ion-icon class="close-icon" name="close-outline"></ion-icon>
         </button>
-        <h4 class="deactivate-heading">deactivate account</h4>
+        <h4 class="deactivate-heading">Deactivate account</h4>
         <p class="deactivate-message">
           Are you sure you want to deactivate your account. All of your data
           will be permanently removed from our server's forever.This action
