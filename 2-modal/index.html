@@ -3,13 +3,209 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Modal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins";
+        background-color: white;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .deactivate-icon-div {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        align-self: start;
+      }
+      .deactivate-icon-div .deactivate-icon {
+        font-size: 2rem;
+        padding: 8px;
+        background-color: #ffe2e2;
+        color: #e84d50;
+        border-radius: 50%;
+        align-self: center;
+      }
+      .deactivate {
+        background-color: white;
+        width: 25%;
+        border-radius: 7px;
+        position: absolute;
+        top: 40%;
+        padding: 2rem;
+        column-gap: 1rem;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: 1fr;
+      }
+      .close-btn {
+        position: absolute;
+        right: 2%;
+        background-color: transparent;
+        top: 0%;
+        min-height: fit-content;
+        /* padding: 3px; */
+        border: 1px solid transparent;
+        font-size: 2rem;
+        &:hover {
+          cursor: pointer;
+          border: 1px solid #e2262a;
+          border-radius: 3px;
+        }
+      }
+      .deactivate-info {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .deactivate-heading {
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+      .deactivate-message {
+        color: grey;
+        font-weight: 500;
+        font-size: 1.3rem;
+      }
+      .deactivate-action-btns {
+        display: flex;
+        justify-content: end;
+        gap: 1rem;
+      }
+      .btn-cancel,
+      .deactivate-btn {
+        background-color: transparent;
+        padding: 7px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+      .btn-cancel {
+        border: 1.5px solid rgb(168, 166, 166);
+        color: #4b4647;
+        transition: background-color 0.5s;
+        &:hover {
+          background-color: rgb(219, 218, 218);
+          cursor: pointer;
+        }
+      }
+      .deactivate-btn {
+        border: none;
+        background-color: #e2262a;
+        color: white;
+        transition: background-color 0.5s;
+        &:hover {
+          background-color: #f45557;
+          cursor: pointer;
+        }
+      }
+      .navigation {
+        align-self: start;
+        margin-right: auto;
+        padding: 2rem;
+      }
+      .deactivate-btn-nav {
+        background-color: #e2262a;
+        color: white;
+        font-size: 1.5rem;
+        padding: 8px;
+        border-radius: 5px;
+        border: none;
+        transition: background-color 0.5s;
+        &:hover {
+          background-color: #c73939;
+          cursor: pointer;
+        }
+      }
+      .deactivate.pop-up-visiblity {
+        opacity: 1;
+        visibility: visible;
+      }
+      /* .deactive.success{
+
+            } */
     </style>
   </head>
-  <body></body>
+  <body>
+    <nav class="navigation">
+      <button class="deactivate-btn-nav">Deactivate Account</button>
+    </nav>
+    <section class="deactivate pop-up">
+      <div class="deactivate-icon-div">
+        <ion-icon class="deactivate-icon" name="warning-outline"></ion-icon>
+      </div>
+      <div class="deactivate-info">
+        <button class="close-btn all-close">
+          <ion-icon class="close-icon" name="close-outline"></ion-icon>
+        </button>
+        <h4 class="deactivate-heading">deactivate account</h4>
+        <p class="deactivate-message">
+          Are you sure you want to deactivate your account. All of your data
+          will be permanently removed from our server's forever.This action
+          cannot be undone.
+        </p>
+        <div class="deactivate-action-btns">
+          <button class="btn-cancel all-close">Cancel</button>
+          <button class="deactivate-btn all-close">Deactivate</button>
+        </div>
+      </div>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
   <script>
-    // write javascript here
+    const nav_deact_btn = document.querySelector(".deactivate-btn-nav");
+    const deactivate_popup = document.querySelector(".deactivate");
+    const close_popup = deactivate_popup.querySelectorAll(".all-close");
+    const body = document.querySelector("body");
+    close_popup.forEach((ele) => {
+      ele.addEventListener("click", function () {
+        deactivate_popup.classList.toggle("pop-up-visiblity");
+        body.style.backgroundColor = "white";
+        nav_deact_btn.style.display = "block";
+      });
+    });
+    nav_deact_btn.addEventListener("click", function () {
+      deactivate_popup.classList.toggle("pop-up-visiblity");
+      body.style.backgroundColor = "#848a96";
+      nav_deact_btn.style.display = "none";
+    });
+    body.addEventListener("click", function (event) {
+      if (
+        !deactivate_popup.contains(event.target) &&
+        !nav_deact_btn.contains(event.target)
+      ) {
+        deactivate_popup.classList.remove("pop-up-visiblity");
+        body.style.backgroundColor = "white";
+        nav_deact_btn.style.display = "block";
+      }
+    });
   </script>
 </html>

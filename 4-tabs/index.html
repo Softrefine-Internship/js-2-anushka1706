@@ -3,13 +3,172 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Tabs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins";
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      main {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .nav-tab-content {
+        background-color: #f9fafb;
+        padding: 2rem;
+        border-radius: 10px;
+        display: none;
+      }
+      .nav-tab-content.active-content {
+        display: block;
+      }
+      .nav-tabs {
+        width: 100%;
+        margin-left: 2rem;
+      }
+      .nav-headings {
+        list-style: none;
+        display: flex;
+        gap: 3rem;
+        padding: 2rem;
+        padding-left: 0rem;
+        padding-bottom: 0rem;
+        border-bottom: 1px solid #f0f1f3;
+      }
+      .link-names,
+      .link-names {
+        text-decoration: none;
+        color: #808792;
+        font-size: 1.7rem;
+        border-bottom: 1px solid transparent;
+        font-weight: 400;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .active-li {
+        color: #0b6ced;
+      }
+      .link-names {
+        padding-bottom: 1.5rem;
+      }
+      .link-names.active-li {
+        border-bottom: 3px solid #0b6ced;
+      }
+      .active-content {
+        display: block;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <nav class="nav-tabs">
+        <ul class="nav-headings">
+          <li class="profile link-names active-li">Profile</li>
+          <li class="dashboard link-names">Dashboard</li>
+          <li class="settings link-names">Settings</li>
+          <li class="contacts link-names">Contacts</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="nav-tab-content profile active-content">
+        <p class="profile-content">
+          <b>THIS IS PROFILE TAB</b> Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Hic odit tenetur optio officiis. Ad, autem iste?
+          Repudiandae nam recusandae, minus repellat corrupti velit sint cum
+          reprehenderit minima quas beatae blanditiis? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Hic odit tenetur optio officiis.
+          Ad, autem iste? Repudiandae nam recusandae, minus repellat corrupti
+          velit sint cum reprehenderit minima quas beatae blanditiis? Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Hic odit tenetur
+          optio officiis. Ad, autem iste? Repudiandae nam recusandae, minus
+          repellat corrupti velit sint cum reprehenderit minima quas beatae
+          blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Hic odit tenetur optio officiis. Ad, autem iste? Repudiandae nam
+          recusandae, minus repellat corrupti velit sint cum reprehenderit
+          minima quas beatae blanditiis?
+        </p>
+      </div>
+      <div class="nav-tab-content dashboard">
+        <p class="dashboard-content">
+          <b>THIS IS DASHBOARD TAB</b> Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Hic odit tenetur optio officiis. Ad, autem iste?
+          Repudiandae nam recusandae, minus repellat corrupti velit sint cum
+          reprehenderit minima quas beatae blanditiis? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Hic odit tenetur optio officiis.
+          Ad, autem iste? Repudiandae nam recusandae, minus repellat corrupti
+          velit sint cum reprehenderit minima quas beatae blanditiis? Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Hic odit tenetur
+          optio officiis. Ad, autem iste? Repudiandae nam recusandae, minus
+          repellat corrupti velit sint cum reprehenderit minima quas beatae
+          blanditiis?
+        </p>
+      </div>
+      <div class="nav-tab-content settings">
+        <p class="settings-content">
+          <b>THIS IS SETTINGS TAB</b> Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Hic odit tenetur optio officiis. Ad, autem iste?
+          Repudiandae nam recusandae, minus repellat corrupti velit sint cum
+          reprehenderit minima quas beatae blanditiis? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Hic odit tenetur optio officiis.
+          Ad, autem iste? Repudiandae nam recusandae, minus repellat corrupti
+          velit sint cum reprehenderit minima quas beatae blanditiis? Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Hic odit tenetur
+          optio officiis. Ad, autem iste? Repudiandae nam recusandae, minus
+          repellat corrupti velit sint cum reprehenderit minima quas beatae
+          blanditiis?
+        </p>
+      </div>
+      <div class="nav-tab-content contacts">
+        <p class="contacts-content">
+          <b>THIS IS CONTACTS TAB</b> Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Hic odit tenetur optio officiis. Ad, autem iste?
+          Repudiandae nam recusandae, minus repellat corrupti velit sint cum
+          reprehenderit minima quas beatae blanditiis? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Hic odit tenetur optio officiis.
+          Ad, autem iste? Repudiandae nam recusandae, minus repellat corrupti
+          velit sint cum reprehenderit minima quas beatae blanditiis?Lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Hic odit tenetur optio
+          officiis. Ad, autem iste? Repudiandae nam recusandae, minus repellat
+          corrupti velit sint cum reprehenderit minima quas beatae blanditiis?
+        </p>
+      </div>
+    </main>
+  </body>
   <script>
-    // write javascript here
+    const nav_links = document.querySelectorAll(".link-names");
+    const content = document.querySelectorAll(".nav-tab-content");
+
+    nav_links.forEach((e) => {
+      e.addEventListener("click", function (event) {
+        const active_link = event.target.classList[0];
+        const act_content = document.querySelector(
+          `.nav-tab-content.${active_link}`
+        );
+        console.log(act_content);
+        content.forEach((c) => c.classList.remove("active-content"));
+        act_content.classList.add("active-content");
+        nav_links.forEach((link) => link.classList.remove("active-li"));
+        event.target.classList.add("active-li");
+      });
+    });
   </script>
 </html>

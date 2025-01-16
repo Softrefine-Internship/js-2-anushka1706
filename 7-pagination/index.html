@@ -3,13 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pagination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins";
+        height: 100vh;
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .pagination {
+        align-self: center;
+        border: 1px solid #d8dce1;
+        border-radius: 8px;
+        display: flex;
+        width: 30%;
+        justify-content: space-between;
+        color: #98999b;
+      }
+      .previous,
+      .next {
+        background-color: transparent;
+        font-size: 2rem;
+        color: #98999b;
+        border: none;
+        transition: background-color 0.5s;
+        &:hover {
+          color: #5cb4f4;
+          background-color: #e9f5fe;
+          cursor: pointer;
+        }
+      }
+      .page {
+        font-size: 2rem;
+        border-right: 1px solid #d8dce1;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        transition: background-color 0.5s;
+        &:hover {
+          color: #5cb4f4;
+          background-color: #e9f5fe;
+          cursor: pointer;
+        }
+      }
+      .active-page {
+        color: #5cb4f4;
+        background-color: #e9f5fe;
+      }
+      .previous {
+        border-right: 1px solid #d8dce1;
+        padding: 1rem;
+      }
+      .next {
+        padding: 1rem;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="pagination">
+        <button class="previous page-btns">Previous</button>
+        <span class="page">1</span>
+        <span class="page">2</span>
+        <span class="page active-page">3</span>
+        <span class="page">4</span>
+        <span class="page">5</span>
+        <button class="next page-btns">Next</button>
+      </section>
+    </main>
+  </body>
   <script>
-    // write javascript here
+    let activePage;
+    const allPages = document.querySelectorAll(".page");
+    const allBtns = document.querySelectorAll(".page.btns");
+    allPages.forEach((ele) => {
+      if (ele.classList.contains("active-page")) {
+        activePage = ele;
+      }
+    });
+    allPages.forEach((e) => {
+      e.addEventListener("click", function (item) {
+        activePage.classList.remove("active-page");
+        activePage = item.target;
+        activePage.classList.add("active-page");
+      });
+    });
+    next = document.querySelector(".next");
+    if (next) {
+      next.addEventListener("click", () => {
+        let nextPage = activePage.nextElementSibling;
+        if (nextPage && nextPage.classList.contains("page")) {
+          activePage.classList.remove("active-page");
+          activePage = nextPage;
+          activePage.classList.add("active-page");
+        }
+      });
+    }
+    previous = document.querySelector(".previous");
+    if (previous) {
+      previous.addEventListener("click", () => {
+        let prevPage = activePage.previousElementSibling;
+        if (prevPage && prevPage.classList.contains("page")) {
+          activePage.classList.remove("active-page");
+          activePage = prevPage;
+          activePage.classList.add("active-page");
+        }
+      });
+    }
   </script>
 </html>

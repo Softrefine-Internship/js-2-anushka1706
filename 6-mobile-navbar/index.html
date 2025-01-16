@@ -3,13 +3,179 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Mob-navbar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: "Poppins";
+        overflow-x: hidden;
+        height: 100vh;
+      }
+      .omni-logo {
+        height: 2.2rem;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5.6rem;
+        background-color: #fdf2e9;
+        padding: 3.5rem 5rem;
+        position: relative;
+      }
+      .nav-btn-icon {
+        border: none;
+        background-color: #fdf2e9;
+        display: none;
+      }
+      .nav-icon {
+        font-size: 2.5rem;
+        color: black;
+      }
+      .nav-icon[name="close-outline"] {
+        display: none;
+      }
+      .nav-ul {
+        display: flex;
+        align-items: center;
+        gap: 4.2rem;
+        justify-content: start;
+      }
+      .nav-li a:link,
+      .nav-li a:visited {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: inherit;
+        text-decoration: none;
+      }
+      .nav-li {
+        list-style: none;
+      }
+      .nav-li a:hover {
+        cursor: pointer;
+      }
+      .nav-li:hover {
+        color: #cf711f;
+        transition: color 300ms;
+      }
+      .nav-li.nav-cta {
+        padding: 1rem 1.5rem;
+        background-color: #e67e22;
+        color: white;
+        border-radius: 10px;
+      }
+      .nav-li.nav-cta:hover {
+        background-color: #cf711f;
+        transition: background-color 300ms;
+      }
+      @media (max-width: 59em) {
+        .nav-btn-icon {
+          display: block;
+        }
+        .main-nav {
+          background-color: hsla(0, 0%, 100%, 0.6);
+          position: absolute;
+          left: 0;
+          top: 0;
+          backdrop-filter: blur(10px);
+          min-height: 100vh;
+          width: 100%;
+          transform: translateX(100%);
+          transition: transform 0.6s ease-in-out;
+          pointer-events: none;
+          visibility: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .nav-open .main-nav {
+          transform: translateX(0);
+          pointer-events: auto;
+          visibility: visible;
+        }
+        .nav-icon[name="close-outline"] {
+          display: none;
+        }
+        .nav-open .nav-icon[name="menu-outline"] {
+          display: none;
+        }
+        .nav-open .nav-icon[name="close-outline"] {
+          display: block;
+        }
+        .nav-ul {
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          justify-content: center;
+          align-self: center;
+          text-align: center;
+          font-size: 2rem;
+          gap: 5rem;
+        }
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <a href="#">
+        <img class="omni-logo" src="./img/omnifood-logo.png" alt="logo" />
+      </a>
+      <nav class="main-nav">
+        <ul class="nav-ul">
+          <li class="nav-li">
+            <a class="nav-li-a" href="#">How it works</a>
+          </li>
+          <li class="nav-li"><a class="nav-li-a" href="#">Meals</a></li>
+          <li class="nav-li">
+            <a class="nav-li-a" href="#">Pricings</a>
+          </li>
+          <li class="nav-li">
+            <a class="nav-li-a" href="#">Testimonial</a>
+          </li>
+          <li class="nav-li nav-cta">
+            <a href="#">Try it for free &rarr;</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="nav-btn-icon">
+        <ion-icon class="nav-icon" name="menu-outline"></ion-icon>
+        <ion-icon class="nav-icon close" name="close-outline"></ion-icon>
+      </button>
+    </header>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
   <script>
-    // write javascript here
+    const navBtn = document.querySelector(".nav-btn-icon");
+    const header = document.querySelector(".header");
+    navBtn.addEventListener("click", function () {
+      header.classList.toggle("nav-open");
+    });
+
+    const closeBtn = document.querySelector(".close");
+    const mainNav = document.querySelector(".main-nav");
+    closeBtn.addEventListener("click", function () {
+      mainNav.classList.add("close-nav");
+    });
   </script>
 </html>

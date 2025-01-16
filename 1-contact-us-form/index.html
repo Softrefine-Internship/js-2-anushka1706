@@ -4,12 +4,315 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins";
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+      }
+      .contact-us {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        gap: 5rem;
+        max-height: 100%;
+        width: 100%;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          height: 10rem;
+          z-index: 1;
+          width: 25rem;
+          top: 10%;
+          left: -50%;
+          background-image: radial-gradient(
+            ellipse 70% 70% at top,
+            #b797f6 20%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          filter: blur(70px);
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          height: 20rem;
+          z-index: 1;
+          width: 25rem;
+          top: 30%;
+          left: -110%;
+          background-image: radial-gradient(
+            ellipse 70% 70% at top,
+            #f3c2fe 20%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          filter: blur(70px);
+        }
+      }
+      .heading {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-self: center;
+        text-align: center;
+      }
+      .heading h3 {
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
+      .heading p {
+        color: grey;
+      }
+      form {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-height: 100%;
+        width: 100%;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          width: 0px;
+        }
+
+        /* &::-webkit-scrollbar-track {
+          background: #c9c7c7;;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #acaaaa;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: #c9c7c7;
+        } */
+      }
+      .name-div {
+        display: flex;
+        gap: 30px;
+      }
+      .firstname,
+      .lastname {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .firstname input,
+      .lastname input,
+      .fields input,
+      .text-area-message {
+        width: 100%;
+        height: 30px;
+        border: 1px solid rgba(128, 128, 128, 0.328);
+        box-shadow: 0 0 5px rgba(128, 128, 128, 0.158);
+        border-radius: 4px;
+        padding-left:5px;
+        
+      }
+      .fields {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .text-area-message {
+        /* width: 472px; */
+        height: 100px;
+      }
+      .country-code {
+        color: rgba(128, 128, 128, 0.609);
+        border:none;
+        border-radius: 0px;
+        align-self: stretch;
+        background-color: white;
+      }
+      .field-phone {
+        display: flex;
+        justify-content: start;
+        border: none;
+        border: 1px solid rgba(128, 128, 128, 0.328);
+        box-shadow: 0 0 5px rgba(128, 128, 128, 0.158);
+        height: 30px;
+        align-items: center;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 100%;
+      }
+      .field-phone input {
+        background-color: white;
+        border:none;
+        border-radius: 0px;
+        height:100%;
+      }
+      .notification input[type="checkbox"] {
+        opacity: 0;
+        cursor: pointer;
+        left: -9000px;
+        position: absolute;
+      }
+      .notification input[type="checkbox"] + .policy {
+        color: rgba(86, 86, 88, 0.913);
+        font-weight: 400;
+        display: flex;
+        position: relative;
+        align-items: center;
+        gap: 5px;
+      }
+      .notification input[type="checkbox"] + .policy::before {
+        content: " ";
+        height: 18px;
+        width: 35px;
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.386);
+        border-radius: 40px;
+        margin-right: 3px;
+      }
+      .notification input[type="checkbox"] + .policy::after {
+        content: " ";
+        height: 17px;
+        position: absolute;
+        left: 1px;
+        cursor: pointer;
+        width: 16px;
+        background-color: white;
+        border-radius: 50%;
+      }
+      .notification input[type="checkbox"]:checked + .policy::after {
+        left: 18px;
+      }
+      .notification input[type="checkbox"]:checked + .policy::before {
+        background-color: rgba(72, 72, 224, 255);
+      }
+      .policy span {
+        color: rgba(72, 72, 224, 255);
+        font-weight: bold;
+      }
+      .lets-talk {
+        background-color: rgba(72, 72, 224, 255);
+        color: white;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      label {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .text-area-message {
+        padding: 5px;
+      }
+      .policy a {
+        color: #5f5fe3;
+        font-weight: 600;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+      input,textarea{
+        &:focus{
+          outline: none;
+        }
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="contact-us">
+        <div class="heading">
+          <h3>Contact sales</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et non
+            vitae
+          </p>
+        </div>
+        <form class="contact-form">
+          <div class="name-div">
+            <div class="firstname">
+              <label class="field-name">First name</label>
+              <input type="text" class="field-value" name="firstname" />
+            </div>
+            <div class="lastname">
+              <label class="field-name">Last name</label>
+              <input type="text" class="field-value" name="lastname" />
+            </div>
+          </div>
+          <div class="fields">
+            <label class="field-name">Company</label>
+            <input type="text" class="field-value" name="company" />
+          </div>
+          <div class="fields">
+            <label class="field-name">Email</label>
+            <input type="text" class="field-value" name="email" />
+          </div>
+          <div class="fields phone-number">
+            <label class="field-name">Phone number</label>
+            <div class="field-phone">
+              <select class="country-code" name="country-code">
+                <option value="+1">US</option>
+                <option value="+44">UK</option>
+                <option value="+91">India</option>
+                <option value="+61">Australia</option>
+                <option value="+81">Japan</option>
+              </select>
+              <input type="number" class="phone" name="phone-number" />
+            </div>
+          </div>
+          <div class="fields">
+            <label class="field-name">Message</label>
+            <textarea class="text-area-message" name="user-message"></textarea>
+          </div>
+          <div class="notification">
+            <input
+              type="checkbox"
+              class="toggle"
+              id="check"
+              name="agree-policy"
+            />
+            <label for="check" class="policy">
+              By selecting this, you agree to out <a>privacy policy.</a>
+            </label>
+          </div>
+          <button name="submit-form" class="lets-talk">Let's Talk</button>
+        </form>
+      </section>
+    </main>
+  </body>
   <script>
-    // write javascript here
+    const submit_btn = document.querySelector(".lets-talk");
+    const contact_form = document.querySelector(".contact-form");
+    const form_elements = contact_form.elements;
+    let form_details = {};
+    submit_btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      for (const ele of form_elements) {
+        if (ele.name != "submit-form") {
+          form_details[ele.name] = ele.value;
+        }
+        if (ele.name === "agree-policy") {
+          form_details[ele.name] = ele.checked ? "yes" : "no";
+        }
+      }
+      Object.entries(form_details).forEach(([key, value]) => {
+        console.log(`${key} : ${value}`);
+      });
+    });
   </script>
 </html>

@@ -3,13 +3,186 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Carasoul</title>
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #4b4b4d;
+      }
+      .image-slider {
+        background-color: #e4eefc;
+        padding: 2rem;
+        border-radius: 20px;
+        align-self: center;
+        display: flex;
+      }
+      .image {
+        height: 30rem;
+        max-width: 60rem;
+        position: relative;
+      }
+      .imgs {
+        height: 30rem;
+        width: 60rem;
+        object-fit: cover;
+        transition: opacity 0.4s ease-in;
+        opacity: 0;
+        flex-shrink: 0;
+        background-size:contain;
+        display: none;
+        /* transform: translateX(-100%); */
+      }
+      .imgs.current-img {
+        display: block;
+        opacity: 1;
+      }
+      .left-btn,
+      .right-btn {
+        position: absolute;
+        z-index: 100;
+        background-color: #737a85;
+        border-radius: 50%;
+        color: #fdfdfd;
+        display: flex;
+        border: 3px solid transparent;
+        align-items: center;
+        padding: 5px;
+        transition: border 0.5s;
+        top: 45%;
+        &:hover {
+          cursor: pointer;
+          border: 3px solid #fdfdfd;
+        }
+      }
+      .left-icon,
+      .right-icon {
+        font-size: 2rem;
+      }
+      .right-btn {
+        right: 2%;
+      }
+      .left-btn {
+        left: 2%;
+      }
+      .pagination {
+        display: flex;
+        position: absolute;
+        bottom: 2%;
+        left: 40%;
+        gap: 1rem;
+      }
+      .dots.active-page {
+        color: white;
+        font-size: 1.2rem;
+      }
+      .dots {
+        color: #9b9fa8;
+        font-size: 1.2rem;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <section class="image-slider">
+      <div class="image">
+        <button class="left-btn">
+          <ion-icon class="left-icon" name="chevron-back-outline"></ion-icon>
+        </button>
+        <img src="img/img-1.jpeg" alt="" class="imgs img-1 current-img" /><img
+          src="img/img-2.jpeg"
+          alt=""
+          class="imgs img-2"
+        /><img src="img/img-3.jpeg" alt="" class="imgs img-3" /><img
+          src="img/img-4.jpeg"
+          alt=""
+          class="imgs img-4"
+        /><img src="img/img-5.jpeg" alt="" class="imgs img-5" />
+        <button class="right-btn">
+          <ion-icon
+            class="right-icon"
+            name="chevron-forward-outline"
+          ></ion-icon>
+        </button>
+        <div class="pagination">
+          <ion-icon class="dots dot-1 active-page" name="ellipse"></ion-icon>
+          <ion-icon class="dots dot-2" name="ellipse"></ion-icon>
+          <ion-icon class="dots dot-3" name="ellipse"></ion-icon>
+          <ion-icon class="dots dot-4" name="ellipse"></ion-icon>
+          <ion-icon class="dots dot-5" name="ellipse"></ion-icon>
+        </div>
+      </div>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
   <script>
-    // write javascript here
+    let current_img;
+    let currentImgIndex;
+    const left_btn = document.querySelector(".left-btn");
+    const right_btn = document.querySelector(".right-btn");
+    const imgs = document.querySelectorAll(".imgs");
+    const dots = document.querySelectorAll(".dots");
+    const allImgsClass = [];
+    imgs.forEach((ele) => {
+      if (ele.classList.contains("current-img")) {
+        current_img = ele;
+        allImgsClass.push(ele);
+      } else {
+        allImgsClass.push(ele);
+      }
+    });
+    const size = allImgsClass.length;
+    currentImgIndex = allImgsClass.indexOf(current_img);
+    console.log(currentImgIndex);
+    function updateCurrentImage() {
+      imgs.forEach((img, index) => {
+        if (index === currentImgIndex) {
+          img.classList.add("current-img");
+        } else {
+          img.classList.remove("current-img");
+        }
+      });
+    }
+    function updatePage(currentIndex) {
+      dots.forEach((ele) => {
+        if (ele.classList.contains("active-page")) {
+          ele.classList.remove("active-page");
+          dots[currentImgIndex].classList.add("active-page");
+        }
+      });
+    }
+    right_btn.addEventListener("click", function () {
+      currentImgIndex = (currentImgIndex + 1) % size;
+      console.log(currentImgIndex);
+      console.log(allImgsClass[currentImgIndex]);
+      updateCurrentImage();
+      updatePage(currentImgIndex);
+      console.log(allImgsClass);
+    });
+    left_btn.addEventListener("click", function () {
+      currentImgIndex = (currentImgIndex - 1 + size) % size;
+      console.log(currentImgIndex);
+      console.log(allImgsClass[currentImgIndex]);
+      updateCurrentImage();
+      updatePage(currentImgIndex);
+      console.log(allImgsClass);
+    });
   </script>
 </html>

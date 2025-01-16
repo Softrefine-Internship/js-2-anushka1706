@@ -3,13 +3,207 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Accordian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins";
+        height: 100vh;
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column;  */
+        height: 100%;
+      }
+      .accordian-body {
+        display: flex;
+        border: 1px solid #e9ede6;
+        border-radius: 5px;
+        align-self: center;
+        flex-direction: column;
+        width: 60%;
+      }
+      .accordian {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+      .drop-answer {
+        justify-self: flex-end;
+        background-color: transparent;
+        border: none;
+        padding: 1rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .down-icon {
+        border: none;
+        background-color: transparent;
+        color: #2596be;
+        font-size: 2rem;
+        transform: rotate(0deg);
+        transition: transform 0.4s;
+      }
+      .accordian-heading {
+        padding: 1rem;
+        align-self: center;
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+      .acc-top {
+        border-bottom: 1px solid #e9ede6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.4s;
+        &:hover {
+          background-color: #e9ede6;
+          cursor: pointer;
+        }
+      }
+      .accordian-info {
+        padding: 0 1rem;
+        line-height:2;
+        overflow: hidden;
+        max-height: 0;
+        transition: height 0.2s ease-in-out, padding 0.4s ease-in-out;
+        font-size: 1.4rem;
+      }
+      .active-accordian .accordian-info {
+        max-height: 150px;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ede6;
+      }
+      .active-accordian .accordian-heading {
+        color: #2596be;
+      }
+      .active-accordian .drop-answer .down-icon {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="accordian-body">
+        <div class="accordian active-accordian">
+          <div class="acc-top">
+            <h4 class="accordian-heading">What are your business hours?</h4>
+            <button class="drop-answer">
+              <ion-icon
+                class="down-icon"
+                name="chevron-down-outline"
+              ></ion-icon>
+            </button>
+          </div>
+          <p class="accordian-info">
+            Our business hours are<b> Monday to Friday</b>, 9:00 AM to 5:00 PM.
+            During these hours, our customer service team is available to assist
+            you with inquiries, process orders, and resolve any issues. If you
+            need assistance outside these hours, you can email us at
+            support@example.com, and we’ll respond within 24 hours.
+          </p>
+        </div>
+        <div class="accordian">
+          <div class="acc-top">
+            <h4 class="accordian-heading">What is your return policy?</h4>
+            <button class="drop-answer">
+              <ion-icon
+                class="down-icon"
+                name="chevron-down-outline"
+              ></ion-icon>
+            </button>
+          </div>
+          <p class="accordian-info">
+            We offer a hassle-free 30-day return policy for all purchases. If
+            you’re unsatisfied with your product, you can initiate a return by
+            contacting our support team or filling out the return form on our
+            website. Please ensure the product is in its original condition,
+            with all packaging and receipts included. Refunds are processed
+            within 7-10 business days after we receive the returned item.
+          </p>
+        </div>
+        <div class="accordian">
+          <div class="acc-top">
+            <h4 class="accordian-heading">
+              Is there a warranty on your products?
+            </h4>
+            <button class="drop-answer">
+              <ion-icon
+                class="down-icon"
+                name="chevron-down-outline"
+              ></ion-icon>
+            </button>
+          </div>
+          <p class="accordian-info">
+            Yes, all our products come with a one-year warranty. This warranty
+            covers manufacturing defects and issues that arise under normal
+            usage. It does not cover damages caused by misuse, accidents, or
+            unauthorized modifications. If you encounter an issue, please
+            contact our support team with your proof of purchase, and we’ll
+            guide you through the warranty claim process.
+          </p>
+        </div>
+        <div class="accordian">
+          <div class="acc-top">
+            <h4 class="accordian-heading">How do I track my order?</h4>
+            <button class="drop-answer">
+              <ion-icon
+                class="down-icon"
+                name="chevron-down-outline"
+              ></ion-icon>
+            </button>
+          </div>
+          <p class="accordian-info">
+            Once your order is shipped, you’ll receive a tracking number via
+            email. You can use this tracking number on our courier partner’s
+            website to monitor your shipment. If you don’t receive the tracking
+            information within 48 hours of placing your order, please contact
+            us, and we’ll assist you promptly.
+          </p>
+        </div>
+      </section>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
   <script>
-    // write javascript here
+    const allAccordian = document.querySelectorAll(".accordian");
+    let ActiveAccordian;
+    allAccordian.forEach((ele) => {
+      if (ele.classList.contains("active-accordian")) {
+        ActiveAccordian = ele;
+      }
+    });
+    allAccordian.forEach((e) => {
+      e.addEventListener("click", function () {
+        if (ActiveAccordian && ActiveAccordian !== e) {
+          ActiveAccordian.classList.remove("active-accordian");
+        }
+        e.classList.toggle("active-accordian");
+        ActiveAccordian = e.classList.contains("active-accordian") ? e : null;
+      });
+    });
   </script>
 </html>
