@@ -17,6 +17,12 @@
       }
       html {
         font-size: 62.5%;
+        @media (max-width: 450px) {
+          font-size: 50%;
+        }
+        @media (max-width: 350px) {
+          font-size: 48%;
+        }
       }
       body {
         font-family: "Poppins";
@@ -33,6 +39,9 @@
         justify-content: start;
         align-items: center;
         align-self: start;
+        @media (max-width: 898px) {
+          justify-content: center;
+        }
       }
       .deactivate-icon-div .deactivate-icon {
         font-size: 2rem;
@@ -57,6 +66,13 @@
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: 1fr;
+        @media (max-width: 898px) {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+        @media (max-width: 693px) {
+          width: 45%;
+        }
       }
       .close-btn {
         position: absolute;
@@ -72,6 +88,13 @@
           border: 1px solid #e2262a;
           border-radius: 3px;
         }
+        @media (max-width: 898px) {
+          top: -25%;
+          right:-1%;
+        }
+        @media (max-width: 693px) {
+          top: -35%;
+        }
       }
       .deactivate-info {
         display: flex;
@@ -82,7 +105,9 @@
       .deactivate-heading {
         font-size: 1.3rem;
         font-weight: 600;
-        /* text-transform: capitalize; */
+        @media (max-width: 898px) {
+          align-self: center;
+        }
       }
       .deactivate-message {
         color: #b2b9c0;
@@ -103,7 +128,7 @@
         font-size: 1.2rem;
       }
       .btn-cancel {
-        border: 1.5px solid rgb(168, 166, 166);
+        border: 1.5px solid rgb(214, 213, 213);
         color: #4b4647;
         transition: background-color 0.5s;
         &:hover {
@@ -143,8 +168,8 @@
         opacity: 1;
         visibility: visible;
       }
-      .close-icon{
-        color:#b2b9c0;
+      .close-icon {
+        color: #b2b9c0;
       }
       /* .deactive.success{
 

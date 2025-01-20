@@ -22,22 +22,31 @@
       body {
         font-family: "Poppins";
         height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
       }
       main {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
         height: 100%;
+        margin: 0 auto;
       }
       .pagination {
-        align-self: center;
+        /* align-self: ; */
         border: 1px solid #d8dce1;
         border-radius: 8px;
         display: flex;
-        width: 30%;
+        flex-basis: auto;
+        overflow: hidden;
         justify-content: space-between;
         color: #98999b;
-      }
+        @media (max-width: 440px) {
+          flex-wrap: wrap;
+          justify-content: start;
+        }
       .previous,
       .next {
         background-color: transparent;
@@ -60,12 +69,24 @@
         text-align: center;
         width: 100%;
         justify-content: center;
+        padding: 1rem 2rem;
         transition: background-color 0.5s;
+        @media (max-width: 440px) {
+          width: auto;
+          border-bottom:1px solid #d8dce1;
+          flex-grow: 1;
+        }
+        &:last-child{
+          border-right: none;
+        }
         &:hover {
           color: #5cb4f4;
           background-color: #e9f5fe;
           cursor: pointer;
         }
+        /* @media (max-width: 440px) {
+          border-bottom: 1px solid #d8dce1;
+        } */
       }
       .active-page {
         color: #5cb4f4;
@@ -74,9 +95,16 @@
       .previous {
         border-right: 1px solid #d8dce1;
         padding: 1rem;
+           @media (max-width: 440px) {
+          border-bottom: 1px solid #d8dce1;
+        }
       }
       .next {
         padding: 1rem;
+        @media (max-width: 440px) {
+          border-bottom: 1px solid #d8dce1;
+          border-right: 1px solid #d8dce1;
+        }
       }
     </style>
   </head>

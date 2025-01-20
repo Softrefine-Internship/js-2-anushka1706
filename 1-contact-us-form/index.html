@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Contact us</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,12 +16,21 @@
         padding: 0;
         box-sizing: border-box;
       }
+      .validation-text {
+        color: rgb(251, 86, 71);
+        font-size: 8px;
+        font-weight: 600;
+      }
+      html {
+        overflow: hidden;
+      }
       body {
         font-family: "Poppins";
         height: 100vh;
         display: flex;
         justify-content: center;
         width: 100vw;
+        overflow: hidden;
       }
       .contact-us {
         display: flex;
@@ -30,6 +39,7 @@
         gap: 5rem;
         max-height: 100%;
         width: 100%;
+        padding: 1rem;
         position: relative;
         &::after {
           content: "";
@@ -76,7 +86,7 @@
       .heading p {
         color: grey;
       }
-      form {
+      .contact-form {
         align-self: center;
         display: flex;
         flex-direction: column;
@@ -121,8 +131,7 @@
         border: 1px solid rgba(128, 128, 128, 0.328);
         box-shadow: 0 0 5px rgba(128, 128, 128, 0.158);
         border-radius: 4px;
-        padding-left:5px;
-        
+        padding-left: 5px;
       }
       .fields {
         display: flex;
@@ -135,7 +144,7 @@
       }
       .country-code {
         color: rgba(128, 128, 128, 0.609);
-        border:none;
+        border: none;
         border-radius: 0px;
         align-self: stretch;
         background-color: white;
@@ -154,9 +163,9 @@
       }
       .field-phone input {
         background-color: white;
-        border:none;
+        border: none;
         border-radius: 0px;
-        height:100%;
+        height: 100%;
       }
       .notification input[type="checkbox"] {
         opacity: 0;
@@ -228,8 +237,9 @@
           text-decoration: underline;
         }
       }
-      input,textarea{
-        &:focus{
+      input,
+      textarea {
+        &:focus {
           outline: none;
         }
       }
@@ -249,11 +259,18 @@
           <div class="name-div">
             <div class="firstname">
               <label class="field-name">First name</label>
-              <input type="text" class="field-value" name="firstname" />
+              <input
+                type="text"
+                class="field-value"
+                name="firstname"
+                required
+              />
+              <span class="validation-text"></span>
             </div>
             <div class="lastname">
               <label class="field-name">Last name</label>
               <input type="text" class="field-value" name="lastname" />
+              <span class="validation-text"></span>
             </div>
           </div>
           <div class="fields">
@@ -262,7 +279,8 @@
           </div>
           <div class="fields">
             <label class="field-name">Email</label>
-            <input type="text" class="field-value" name="email" />
+            <input type="email" class="field-value" name="email" />
+            <span class="validation-text"></span>
           </div>
           <div class="fields phone-number">
             <label class="field-name">Phone number</label>
@@ -276,6 +294,7 @@
               </select>
               <input type="number" class="phone" name="phone-number" />
             </div>
+            <span class="validation-text"></span>
           </div>
           <div class="fields">
             <label class="field-name">Message</label>
@@ -291,8 +310,11 @@
             <label for="check" class="policy">
               By selecting this, you agree to out <a>privacy policy.</a>
             </label>
+            <span class="validation-text"></span>
           </div>
-          <button name="submit-form" class="lets-talk">Let's Talk</button>
+          <button type="submit" name="submit-form" class="lets-talk">
+            Let's Talk
+          </button>
         </form>
       </section>
     </main>
@@ -304,17 +326,56 @@
     let form_details = {};
     submit_btn.addEventListener("click", function (e) {
       e.preventDefault();
+      let isValid = true;
       for (const ele of form_elements) {
+        const nextibling =
+          ele.name == "agree-policy"
+            ? ele.nextElementSibling.nextElementSibling 
+            : ele.name == "phone-number"
+            ? ele.closest(".fields").querySelector(".validation-text") 
+            : ele.nextElementSibling;
+
+        if (nextibling) {
+          nextibling.textContent = "";
+        }
+        if (ele.value == "" && ele.type !== "checkbox") {
+          if (nextibling) {
+            switch (ele.name) {
+              case "firstname":
+                nextibling.textContent = "please enter your firstname";
+                contact_form.scrollTo(0, 0);
+                isValid = false;
+                break;
+              case "email":
+                nextibling.textContent = "please enter your email";
+                contact_form.scrollTo(0, 0);
+                isValid = false;
+                break;
+              case "phone-number":
+                nextibling.textContent = "please enter your phone number";
+                contact_form.scrollTo(0, 0);
+                isValid = false;
+                break;
+            }
+          }
+        }
         if (ele.name != "submit-form") {
           form_details[ele.name] = ele.value;
         }
         if (ele.name === "agree-policy") {
+          if (!ele.checked) {
+            nextibling.textContent = "You must agree to the privacy policy";
+            isValid = false;
+          }
           form_details[ele.name] = ele.checked ? "yes" : "no";
         }
       }
-      Object.entries(form_details).forEach(([key, value]) => {
-        console.log(`${key} : ${value}`);
-      });
+      if (isValid) {
+        alert("Form submitted");
+        Object.entries(form_details).forEach(([key, value]) => {
+          console.log(`${key} : ${value}`);
+        });
+      }
     });
   </script>
 </html>
