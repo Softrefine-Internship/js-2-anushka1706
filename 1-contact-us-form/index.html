@@ -329,15 +329,18 @@
       for (const ele of form_elements) {
         const nextibling =
           ele.name == "agree-policy"
-            ? ele.nextElementSibling.nextElementSibling 
+            ? ele.nextElementSibling.nextElementSibling
             : ele.name == "phone-number"
-            ? ele.closest(".fields").querySelector(".validation-text") 
+            ? ele.closest(".fields").querySelector(".validation-text")
             : ele.nextElementSibling;
 
         if (nextibling) {
           nextibling.textContent = "";
         }
-        if (ele.value == "" && ele.type !== "checkbox") {
+        if (
+          (ele.value == "" && ele.type !== "checkbox") ||
+          ele.name == "phone-number"
+        ) {
           if (nextibling) {
             switch (ele.name) {
               case "firstname":
@@ -349,8 +352,12 @@
                 isValid = false;
                 break;
               case "phone-number":
-                nextibling.textContent = "please enter your phone number";
-                isValid = false;
+                const length = Number(ele.value.length) !== 10;
+                console.log(length);
+                if (length) {
+                  nextibling.textContent = "please enter valid phone number";
+                  isValid = false;
+                }
                 break;
             }
           }
