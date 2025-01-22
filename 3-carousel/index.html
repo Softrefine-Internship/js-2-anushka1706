@@ -28,6 +28,7 @@
         align-self: center;
         display: flex;
         width: 45%;
+        max-width: 100%;
         min-width: 32rem;
         height: 50%;
         @media (max-width: 960px) {
@@ -152,22 +153,17 @@
     const right_btn = document.querySelector(".right-btn");
     const imgs = document.querySelectorAll(".imgs");
     const dots = document.querySelectorAll(".dots");
-    const allImgsClass = [];
-    imgs.forEach((ele) => {
+    imgs.forEach((ele, index) => {
       if (ele.classList.contains("current-img")) {
-        current_img = ele;
+        currentImgIndex = index;
       }
-      allImgsClass.push(ele);
     });
-    const size = allImgsClass.length;
-    currentImgIndex = allImgsClass.indexOf(current_img);
     console.log(currentImgIndex);
     function updateCurrentImage() {
       imgs.forEach((img, index) => {
+        img.classList.remove("current-img");
         if (index === currentImgIndex) {
           img.classList.add("current-img");
-        } else {
-          img.classList.remove("current-img");
         }
       });
     }
@@ -180,20 +176,16 @@
       });
     }
     right_btn.addEventListener("click", function () {
-      currentImgIndex = (currentImgIndex + 1) % size;
+      currentImgIndex = (currentImgIndex + 1) % imgs.length;
       console.log(currentImgIndex);
-      console.log(allImgsClass[currentImgIndex]);
       updateCurrentImage();
       updatePage(currentImgIndex);
-      console.log(allImgsClass);
     });
     left_btn.addEventListener("click", function () {
-      currentImgIndex = (currentImgIndex - 1 + size) % size;
+      currentImgIndex = (currentImgIndex - 1 + imgs.length) % imgs.length;
       console.log(currentImgIndex);
-      console.log(allImgsClass[currentImgIndex]);
       updateCurrentImage();
       updatePage(currentImgIndex);
-      console.log(allImgsClass);
     });
   </script>
 </html>
