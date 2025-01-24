@@ -76,13 +76,13 @@
       }
       .close-btn {
         position: absolute;
-        right: 2%;
+        right: -3%;
         background-color: transparent;
-        top: 0%;
+        top: -6%;
         min-height: fit-content;
         /* padding: 3px; */
         border: 1px solid transparent;
-        font-size: 2rem;
+        font-size: 2.5rem;
         &:hover {
           cursor: pointer;
           border: 1px solid #e2262a;
@@ -92,8 +92,33 @@
           top: -25%;
           right: -1%;
         }
-        @media (max-width: 693px) {
+        @media (max-width: 892px) {
+          top: -32%;
+          right: -4%;
+        }
+        @media (max-width: 888px) {
+          top: -32%;
+          right:-4%;
+        }
+        @media (max-width: 722px) {
+          top: -30%;
+          right:-4%;
+        }
+        @media (max-width: 692px) {
+          top: -42%;
+          right: -4%;
+        }
+        @media (max-width: 579px) {
+          top: -38%;
+          right: -4%;
+        }
+        @media (max-width: 516px) {
+          top: -30%;
+          right: -4%;
+        }
+        @media (max-width: 449px) {
           top: -35%;
+          right: -4%;
         }
       }
       .deactivate-info {
@@ -128,7 +153,7 @@
         font-size: 1.2rem;
       }
       .btn-cancel {
-        border: 1.5px solid rgb(214, 213, 213);
+        border: 2px solid #d1d5db;
         color: #4b4647;
         transition: background-color 0.5s;
         &:hover {
@@ -169,7 +194,7 @@
         visibility: visible;
       }
       .close-icon {
-        color: #b2b9c0;
+        color: #9ba3ae;
       }
       /* .deactive.success{
 
@@ -228,10 +253,9 @@
     });
     body.addEventListener("click", function (event) {
       if (
-       !deactivate_popup.contains(event.target) &&
+        !deactivate_popup.contains(event.target) &&
         !nav_deact_btn.contains(event.target)
       ) {
-        console.log(event.target);
         deactivate_popup.classList.remove("pop-up-visiblity");
         body.style.backgroundColor = "white";
         nav_deact_btn.style.display = "block";
@@ -239,3 +263,13 @@
     });
   </script>
 </html>
+
+
+
+
+
+
+
+
+
+
