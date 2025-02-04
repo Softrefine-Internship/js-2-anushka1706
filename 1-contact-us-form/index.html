@@ -19,6 +19,7 @@
       .validation-text {
         color: rgb(251, 86, 71);
         font-size: 8px;
+        height: 1rem;
         font-weight: 600;
       }
       html {
@@ -39,6 +40,7 @@
         gap: 5rem;
         max-height: 100%;
         width: 100%;
+        height: 100%;
         padding: 1rem;
         position: relative;
         &::after {
@@ -93,7 +95,7 @@
         gap: 20px;
         max-height: 100%;
         width: 100%;
-        overflow-y: auto;
+        overflow-y: scroll;
         &::-webkit-scrollbar {
           width: 0px;
         }
@@ -275,6 +277,7 @@
           <div class="fields">
             <label class="field-name">Company</label>
             <input type="text" class="field-value" name="company" />
+            <span class="validation-text"></span>
           </div>
           <div class="fields">
             <label class="field-name">Email</label>
@@ -323,10 +326,17 @@
     const contact_form = document.querySelector(".contact-form");
     const form_elements = contact_form.elements;
     let form_details = {};
+    for (let e of form_elements) {
+      e.addEventListener("click", function () {
+        e.focus();
+        e.classList.add("focused");
+      });
+    }
     submit_btn.addEventListener("click", function (e) {
       e.preventDefault();
       let isValid = true;
       for (const ele of form_elements) {
+        ele.focus();
         const nextibling =
           ele.name == "agree-policy"
             ? ele.nextElementSibling.nextElementSibling
@@ -345,6 +355,15 @@
             switch (ele.name) {
               case "firstname":
                 nextibling.textContent = "please enter your firstname";
+                isValid = false;
+                break;
+
+              case "lastname":
+                nextibling.textContent = "please enter your lastname";
+                isValid = false;
+                break;
+              case "company":
+                nextibling.textContent = "please enter your company name ";
                 isValid = false;
                 break;
               case "email":

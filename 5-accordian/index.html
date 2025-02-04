@@ -213,5 +213,28 @@
         ActiveAccordian = e.classList.contains("active-accordian") ? e : null;
       });
     });
+
+    // const call = {
+    //   caller: "mom",
+    //   name: "parth",
+    //   says: function () {
+    //     console.log(`Hey, ${this.caller} just called.`);
+    //   },
+    //   reciever: {
+    //     display: function () {
+    //       console.log(`${this.name} reciever obj`);
+    //     }.bind(call)
+    //   },
+    // };
+    // call.reciever.display();
+
+    const a = {};
+    const b = { key: "b" };
+    const c = { key: "c" };
+
+    a[b] = 123;
+    a[c] = 456;
+
+    console.log(a);
   </script>
 </html>

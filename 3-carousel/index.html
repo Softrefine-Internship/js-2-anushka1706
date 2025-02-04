@@ -111,6 +111,9 @@
       .dots {
         color: #9b9fa8;
         font-size: 1.2rem;
+        &:hover {
+          cursor: pointer;
+        }
       }
     </style>
   </head>
@@ -159,7 +162,7 @@
     const left_btn = document.querySelector(".left-btn");
     const right_btn = document.querySelector(".right-btn");
     const imgs = document.querySelectorAll(".imgs");
-    const dots = document.querySelectorAll(".dots");
+    const page = document.querySelectorAll(".dots");
     imgs.forEach((ele, index) => {
       if (ele.classList.contains("current-img")) {
         currentImgIndex = index;
@@ -175,13 +178,21 @@
       });
     }
     function updatePage(currentIndex) {
-      dots.forEach((ele) => {
+      page.forEach((ele) => {
         if (ele.classList.contains("active-page")) {
           ele.classList.remove("active-page");
-          dots[currentImgIndex].classList.add("active-page");
+          page[currentImgIndex].classList.add("active-page");
         }
       });
     }
+    page.forEach((item, index) => {
+      item.addEventListener("click", function () {
+        currentImgIndex = index;
+        updateCurrentImage();
+        updatePage(currentImgIndex);
+      });
+    });
+
     right_btn.addEventListener("click", function () {
       currentImgIndex = (currentImgIndex + 1) % imgs.length;
       console.log(currentImgIndex);
